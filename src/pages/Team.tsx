@@ -13,6 +13,7 @@ const Team = () => {
 Dr. Sloan's research has been continuously funded by the Department of Veterans Affairs (DVA) and the National Institute of Mental Health for the past 20 years. She has over 160 peer-reviewed publications. Dr. Sloan is a member of the American Psychological Association where she is a fellow in Divisions 12 (Clinical), 38 (Health), and 56 (Trauma Psychology). She has served on several editorial boards of scientific journals and is currently a guest editor for the Journal of Traumatic Stress and an Associate Editor for the journal Emotion.
 
 Her work has been recognized with numerous awards including the 2018 Robert S. Laufer Memorial Award for Outstanding Scientific Achievement and the 2017 award for Outstanding Contributions to Science in the Field of Traumatic Stress from the International Society for Traumatic Stress Studies.`,
+    imageUrl: "/assets/Denise.JPG",
     },
     {
       name: "Brian P. Marx, Ph.D.",
@@ -22,6 +23,7 @@ Her work has been recognized with numerous awards including the 2018 Robert S. L
 Dr. Marx's research has been continuously funded by the Department of Defense (DoD) and the Department of Veterans Affairs (DVA) for the past 20 years. He has over 150 peer-reviewed publications. Dr. Marx is a member of the American Psychological Association where he is a fellow in Division 56 (Trauma Psychology). He has served on several editorial boards of scientific journals and is currently the Editor-in-Chief of the Journal of Traumatic Stress.
 
 His work has been recognized with numerous awards including the 2018 Robert S. Laufer Memorial Award for Outstanding Scientific Achievement from the International Society for Traumatic Stress Studies, 2011 Early Career Award for Outstanding Contributions to Research from DVA's Health Services Research & Development (HSR&D) Service, and the 2004 Outstanding Dissertation Award from the International Society for Traumatic Stress Studies.`,
+    imageUrl: "/assets/Marx.JPG",
     },
   ];
 
@@ -45,6 +47,7 @@ His work has been recognized with numerous awards including the 2018 Robert S. L
                 name={author.name}
                 credentials={author.credentials}
                 bio={author.bio}
+                imageUrl={author.imageUrl}
               />
             ))}
           </div>
