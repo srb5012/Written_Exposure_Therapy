@@ -27,7 +27,7 @@ const BookCard = () => {
               size="lg"
             >
               <a
-                href="https://www.amazon.com/dp/143384437X"
+                href="https://www.amazon.com/Written-Exposure-Therapy-PTSD-Professionals/dp/1433844370"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2"
