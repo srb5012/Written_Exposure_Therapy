@@ -1,6 +1,21 @@
+/**
+ * Layout Component
+ * 
+ * Main layout wrapper for the entire application. Includes:
+ * - Responsive header with navigation
+ * - Mobile menu functionality
+ * - Footer with site information and links
+ * 
+ * Navigation items are configured in the navItems array below.
+ * To add a new page to the navigation:
+ * 1. Add a new route in App.tsx
+ * 2. Add a corresponding entry in navItems
+ * 3. Create the new page component in src/pages
+ */
+
 import { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react"; // Icons for mobile menu
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -9,15 +24,18 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
+  // Hooks for navigation and mobile menu
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Main navigation configuration
+  // Add new navigation items here to update both desktop and mobile menus
   const navItems = [
-    { label: "Home", path: "/" },
-    { label: "About", path: "/about" },
-    { label: "Authors", path: "/team" },
-    { label: "Resources", path: "/resources" },
-    { label: "Contact", path: "/contact" },
+    { label: "Home", path: "/" },           // Landing page
+    { label: "About", path: "/about" },     // About WET therapy
+    { label: "Authors", path: "/team" },    // Treatment developers
+    { label: "Resources", path: "/resources" }, // Training and materials
+    { label: "Contact", path: "/contact" }, // Contact information
   ];
 
   const isActive = (path: string) => location.pathname === path;

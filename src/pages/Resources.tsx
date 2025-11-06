@@ -1,7 +1,30 @@
+/**
+ * Resources Page Component
+ * 
+ * Displays a collection of educational resources, training materials,
+ * and reference documents related to Written Exposure Therapy.
+ * 
+ * Resource Types:
+ * - Overview Documents (BookOpen icon)
+ * - Video Content (Video icon)
+ * - Training Materials (GraduationCap icon)
+ * - Treatment Manual (FileText icon)
+ * 
+ * Tags:
+ * - "Client": Resources for patients/clients
+ * - "Clinician": Resources for healthcare providers
+ * - "Overview": General information
+ * - "Video": Video content
+ * - "Training": Training materials
+ * - "Manual": Treatment manuals and guides
+ */
+
 import ResourceItem from "@/components/ResourceItem";
 import { BookOpen, Video, GraduationCap, FileText } from "lucide-react";
 
 const Resources = () => {
+  // Resource configuration
+  // Add new resources here to display them on the page
   const resources = [
     {
       title: "National Center for PTSD - WET Overview",

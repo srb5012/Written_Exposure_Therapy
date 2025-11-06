@@ -1,3 +1,22 @@
+/**
+ * BookCard Component
+ * 
+ * Displays information about the Written Exposure Therapy treatment manual
+ * including cover image, description, and purchase link.
+ * 
+ * Usage:
+ * ```tsx
+ * <BookCard />
+ * ```
+ * 
+ * Assets Required:
+ * - /assets/book_cover.jpeg: Book cover image
+ * 
+ * Configuration:
+ * - Update the purchase link in the <Button> component
+ * - Image dimensions are optimized for 300px width
+ */
+
 import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";

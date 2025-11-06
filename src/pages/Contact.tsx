@@ -22,7 +22,7 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // For now, using mailto as fallback (will be replaced with Lovable Cloud later)
+    // Using mailto link for contact
     const mailtoLink = `mailto:contact@example.org?subject=${encodeURIComponent(
       `WET Contact Form - ${formData.subject}`
     )}&body=${encodeURIComponent(
