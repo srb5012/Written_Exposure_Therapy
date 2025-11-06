@@ -18,27 +18,54 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // --- MODIFIED SECTION STARTS HERE ---
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Using mailto link for contact
-    const mailtoLink = `mailto:contact@example.org?subject=${encodeURIComponent(
-      `WET Contact Form - ${formData.subject}`
-    )}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nSubject: ${formData.subject}\n\nMessage:\n${formData.message}`
-    )}`;
+    try {
+      // Send data to your backend API endpoint
+      const response = await fetch('http://localhost:3001/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData), // Send form data as a JSON string
+      });
 
-    window.location.href = mailtoLink;
-
-    toast({
-      title: "Opening email client...",
-      description: "Your default email client will open with the message pre-filled.",
-    });
-
-    setIsSubmitting(false);
-    setFormData({ name: "", email: "", subject: "", message: "" });
+      if (response.ok) {
+        // If the request was successful, show a success toast
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for contacting us. We'll get back to you shortly.",
+        });
+        // Clear the form fields
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        // If the server responded with an error, show a failure toast
+        const errorData = await response.json();
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: errorData.message || "There was a problem sending your message. Please try again later.",
+        });
+      }
+    } catch (error) {
+      // If there was a network error, log it and show a generic error toast
+      console.error('Submission error:', error);
+      toast({
+        variant: "destructive",
+        title: "Network Error",
+        description: "Could not connect to the server. Please check your internet connection.",
+      });
+    } finally {
+      // Re-enable the submit button regardless of the outcome
+      setIsSubmitting(false);
+    }
   };
+
+  // --- MODIFIED SECTION ENDS HERE ---
 
   return (
     <div className="min-h-screen py-12 sm:py-16">
@@ -97,7 +124,6 @@ const Contact = () => {
                   <Select
                     value={formData.subject}
                     onValueChange={(value) => setFormData({ ...formData, subject: value })}
-                    required
                   >
                     <SelectTrigger id="subject">
                       <SelectValue placeholder="Select your role" />
