@@ -25,33 +25,33 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const port = 3001; // We'll run the backend on a different port
+const port = 3001; //run the backend on a different port
 
 // Middleware
-app.use(cors()); // Allows requests from your frontend
-app.use(express.json()); // Allows the server to understand JSON data
-app.use(express.urlencoded({ extended: true })); // Allows the server to understand form data
+app.use(cors()); 
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true })); 
 
 // The API route that will receive the form data
 app.post('/api/contact', (req, res) => {
     // Get the data from the request body
     const { name, email, message } = req.body;
 
-    // --- 1. Set up Nodemailer ---
+    // Set up Nodemailer 
     // This is the transport configuration.
-    // I'm using Gmail as an example. You'll need to use your own email provider's SMTP settings.
+    // I'm using Gmail here
     const transporter = nodemailer.createTransport({
-        service: 'gmail', // Use 'hotmail', 'yahoo', etc. for other services
+        service: 'gmail', 
         auth: {
-            user: process.env.EMAIL_USER, // Your email address from the .env file
-            pass: process.env.EMAIL_PASS, // Your email password (or app password) from the .env file
+            user: process.env.EMAIL_USER, 
+            pass: process.env.EMAIL_PASS, 
         },
     });
 
-    // --- 2. Define the email options ---
+    // --- Define the email options ---
     const mailOptions = {
         from: `"${name}" <${email}>`, // Sender's name and email
-        to: process.env.RECIPIENT_EMAIL,   // The client email address you want to send to
+        to: process.env.RECIPIENT_EMAIL,   // Recipient email address
         subject: `WET Contact Form Submission from ${name}`,
         text: `You have received a new message from your website contact form.\n\n` +
               `Name: ${name}\n` +
@@ -59,7 +59,7 @@ app.post('/api/contact', (req, res) => {
               `Message:\n${message}`
     };
 
-    // --- 3. Send the email ---
+    // --- Send the email ---
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.error('Error sending email:', error);
