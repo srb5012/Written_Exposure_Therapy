@@ -1,6 +1,22 @@
+/**
+ * File: src/components/Layout.tsx
+ * Purpose: Global layout wrapper — provides header, navigation, main content slot, and footer.
+ *
+ * Influenced by:
+ *  - `react-router-dom` for navigation and location-aware active links
+ *  - UI primitives (e.g., `@/components/ui/button`) and icon set `lucide-react`
+ *
+ * Influences:
+ *  - Wraps page components rendered via routing (App.tsx)
+ *  - Controls site-level navigation items and footer content
+ *
+ * Notes:
+ *  - Non-functional header added. To add a new menu entry: add route in `App.tsx` and an item to `navItems`.
+ */
+
 import { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react"; // Icons for mobile menu
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -9,15 +25,18 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
+  // Hooks for navigation and mobile menu
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Main navigation configuration
+  // Add new navigation items here to update both desktop and mobile menus
   const navItems = [
-    { label: "Home", path: "/" },
-    { label: "About", path: "/about" },
-    { label: "Authors", path: "/team" },
-    { label: "Resources", path: "/resources" },
-    { label: "Contact", path: "/contact" },
+    { label: "Home", path: "/" },           // Landing page
+    { label: "About", path: "/about" },     // About WET therapy
+    { label: "Authors", path: "/team" },    // Treatment developers
+    { label: "Resources", path: "/resources" }, // Training and materials
+    { label: "Contact", path: "/contact" }, // Contact information
   ];
 
   const isActive = (path: string) => location.pathname === path;
