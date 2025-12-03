@@ -1,7 +1,15 @@
+/**
+ * File: src/pages/Resources.tsx
+ * Purpose: Resources index page that lists videos, links, and training materials for WET.
+ * Influenced by: ResourceItem component and UI primitives; Influences: navigation and contact links.
+ */
+
 import ResourceItem from "@/components/ResourceItem";
 import { BookOpen, Video, GraduationCap, FileText } from "lucide-react";
 
 const Resources = () => {
+  // Resource configuration
+  // Add new resources here to display them on the page
   const resources = [
     {
       title: "National Center for PTSD - WET Overview",

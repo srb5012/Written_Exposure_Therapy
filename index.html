@@ -1,3 +1,16 @@
+<!--
+  File: index.html
+  Purpose: Root HTML document for the Vite React application. Loads the client bundle which mounts into #root.
+
+  Influenced by:
+   - Vite build system which injects /src/main.tsx as the client entry in development
+   - OpenGraph and social metadata that reference images in /public/assets
+
+  Influences:
+   - Serves as the HTML shell for the client app and the starting point for SEO metadata.
+
+  Notes: Non-functional header comment added for documentation only.
+-->
 <!doctype html>
 <html lang="en">
   <head>
@@ -10,11 +23,11 @@
     <meta property="og:title" content="Written Exposure Therapy for PTSD | Official WET Treatment Website" />
     <meta property="og:description" content="Brief, evidence-based treatment for PTSD with proven effectiveness. Learn about WET from the treatment developers." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:image" content="/assets/opengraph-image.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:site" content="@WET_PTSD" />
+    <meta name="twitter:image" content="/assets/opengraph-image.png" />
   </head>
 
   <body>

@@ -1,3 +1,19 @@
+/**
+ * Home Page Component
+ * 
+ * Landing page of the Written Exposure Therapy website.
+ * 
+ * Structure:
+ * 1. Hero Section - Main title and introduction
+ * 2. About WET Section - Overview with BookCard sidebar
+ * 3. Key Benefits - List of treatment benefits
+ * 4. Call to Action - Links to other pages
+ * 
+ * Related Components:
+ * - BookCard: Displays treatment manual information
+ * - Button: UI component for calls-to-action
+ */
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import BookCard from "@/components/BookCard";
