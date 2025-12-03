@@ -1,26 +1,20 @@
-/**
- * File: src/pages/Resources.tsx
- * Purpose: Resources index page that lists videos, links, and training materials for WET.
- * Influenced by: ResourceItem component and UI primitives; Influences: navigation and contact links.
- */
-
 import ResourceItem from "@/components/ResourceItem";
 import { BookOpen, Video, GraduationCap, FileText } from "lucide-react";
 
 const Resources = () => {
-  // Resource configuration
-  // Add new resources here to display them on the page
   const resources = [
     {
       title: "National Center for PTSD - WET Overview",
-      description: "Comprehensive information about Written Exposure Therapy from the National Center for PTSD, including treatment overview, evidence base, and implementation guidance.",
+      description:
+        "Comprehensive information about Written Exposure Therapy from the National Center for PTSD, including treatment overview, evidence base, and implementation guidance.",
       tags: ["Clinician", "Overview"],
       link: "https://www.ptsd.va.gov/professional/treat/txessentials/wet_pro.asp",
       icon: <BookOpen className="h-6 w-6 text-primary" />,
     },
     {
       title: "Client Introduction Video",
-      description: "An informative video designed for clients to learn about Written Exposure Therapy, what to expect during treatment, and how WET can help with PTSD symptoms.",
+      description:
+        "An informative video designed for clients to learn about Written Exposure Therapy, what to expect during treatment, and how WET can help with PTSD symptoms.",
       tags: ["Client", "Video"],
       link: "https://www.youtube.com/watch?v=ptSljPTHPoA",
       videoEmbed: "https://www.youtube.com/embed/ptSljPTHPoA",
@@ -28,7 +22,8 @@ const Resources = () => {
     },
     {
       title: "Clinician Training Video",
-      description: "Detailed training video for mental health professionals covering the implementation of Written Exposure Therapy, session structure, and clinical considerations.",
+      description:
+        "Detailed training video for mental health professionals covering the implementation of Written Exposure Therapy, session structure, and clinical considerations.",
       tags: ["Clinician", "Training", "Video"],
       link: "https://www.youtube.com/watch?v=DNuC68b6t9Y",
       videoEmbed: "https://www.youtube.com/embed/DNuC68b6t9Y",
@@ -36,34 +31,41 @@ const Resources = () => {
     },
     {
       title: "WET Continuing Education Overview",
-      description: "Information about continuing education opportunities for clinicians, including CE credits and training workshops on Written Exposure Therapy implementation.",
+      description:
+        "Information about continuing education opportunities for clinicians, including CE credits and training workshops on Written Exposure Therapy implementation.",
       tags: ["Clinician", "CE / Training"],
       link: "https://www.ptsd.va.gov/professional/continuing_ed/WET_state_science.asp",
       icon: <GraduationCap className="h-6 w-6 text-primary" />,
     },
     {
       title: "WET Whiteboard Educational Video",
-      description: "An animated whiteboard-style video explaining the core concepts of Written Exposure Therapy, its mechanisms of action, and treatment process in an accessible format.",
+      description:
+        "An animated whiteboard-style video explaining the core concepts of Written Exposure Therapy, its mechanisms of action, and treatment process in an accessible format.",
       tags: ["Client", "Clinician", "Video"],
       link: "https://www.media.eo.va.gov/ptsd/MP4/wb_written_exposure_therapy.mp4",
       icon: <Video className="h-6 w-6 text-primary" />,
     },
     {
       title: "Treatment Manual",
-      description: "The official WET treatment manual by Drs. Sloan and Marx, available for purchase. Includes session-by-session guidance, clinical examples, and implementation protocols. Available in multiple languages.",
+      description:
+        "The official WET treatment manual by Drs. Sloan and Marx, available for purchase. Includes session-by-session guidance, clinical examples, and implementation protocols. Available in multiple languages.",
       tags: ["Clinician", "Manual"],
       link: "https://www.amazon.com/dp/143384437X",
       icon: <FileText className="h-6 w-6 text-primary" />,
     },
     {
-    title: "Published Studies on Written Exposure Therapy",
-    description:
-      "Peer-reviewed research examining the effectiveness, outcomes, and clinical applications of Written Exposure Therapy across diverse populations.",
-    tags: ["Research", "Published Studies", "Evidence-Based"],
-    link: "/sources",
-    icon: <BookOpen className="h-6 w-6 text-primary" />,
-  },
+      title: "Published Studies on Written Exposure Therapy",
+      description:
+        "Peer-reviewed research examining the effectiveness, outcomes, and clinical applications of Written Exposure Therapy across diverse populations.",
+      tags: ["Research", "Published Studies", "Evidence-Based"],
+      link: "/sources",
+      icon: <BookOpen className="h-6 w-6 text-primary" />,
+    },
   ];
+
+  // Separate the “Published Studies” card
+  const topResource = resources.find(r => r.title.includes("Published Studies"));
+  const otherResources = resources.filter(r => r.title !== topResource?.title);
 
   return (
     <div className="min-h-screen py-12 sm:py-16">
@@ -77,9 +79,23 @@ const Resources = () => {
             </p>
           </div>
 
-          {/* Resources Grid */}
+          {/* Top Full-Width Resource */}
+          {topResource && (
+            <div className="w-full mb-8">
+              <ResourceItem
+                title={topResource.title}
+                description={topResource.description}
+                tags={topResource.tags}
+                link={topResource.link}
+                videoEmbed={topResource.videoEmbed}
+                icon={topResource.icon}
+              />
+            </div>
+          )}
+
+          {/* Other Resources Grid */}
           <div className="grid md:grid-cols-2 gap-6">
-            {resources.map((resource, index) => (
+            {otherResources.map((resource, index) => (
               <ResourceItem
                 key={index}
                 title={resource.title}
