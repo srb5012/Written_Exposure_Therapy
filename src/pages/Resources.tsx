@@ -1,5 +1,5 @@
 import ResourceItem from "@/components/ResourceItem";
-import { BookOpen, Video, GraduationCap, FileText } from "lucide-react";
+import { BookOpen, Video, GraduationCap, FileText, Globe } from "lucide-react";
 
 const Resources = () => {
   const resources = [
@@ -21,10 +21,10 @@ const Resources = () => {
       icon: <Video className="h-6 w-6 text-primary" />,
     },
     {
-      title: "Clinician Training Video",
+      title: "Clinician Description of WET",
       description:
-        "Detailed training video for mental health professionals covering the implementation of Written Exposure Therapy, session structure, and clinical considerations.",
-      tags: ["Clinician", "Training", "Video"],
+        "A descriptive overview for mental health professionals covering the background of Written Exposure Therapy, session structure, and clinical considerations.",
+      tags: ["Clinician", "Overview", "Video"],
       link: "https://www.youtube.com/watch?v=DNuC68b6t9Y",
       videoEmbed: "https://www.youtube.com/embed/DNuC68b6t9Y",
       icon: <GraduationCap className="h-6 w-6 text-primary" />,
@@ -40,18 +40,26 @@ const Resources = () => {
     {
       title: "WET Whiteboard Educational Video",
       description:
-        "An animated whiteboard-style video explaining the core concepts of Written Exposure Therapy, its mechanisms of action, and treatment process in an accessible format.",
-      tags: ["Client", "Clinician", "Video"],
+        "A resource for clients: An animated whiteboard-style video explaining the core concepts of Written Exposure Therapy, its mechanisms of action, and treatment process in an accessible format.",
+      tags: ["Client", "Video"],
       link: "https://www.media.eo.va.gov/ptsd/MP4/wb_written_exposure_therapy.mp4",
       icon: <Video className="h-6 w-6 text-primary" />,
     },
     {
-      title: "Training Modules for Written Exposure Therapy",
+      title: "WET Training Modules",
       description:
-        "The official WET treatment manual by Drs. Sloan and Marx, available for purchase. Includes session-by-session guidance, clinical examples, and implementation protocols. Available in multiple languages.",
+        "The official WET training by Drs. Sloan and Marx. Includes session-by-session guidance, clinical examples, and implementation protocols.",
       tags: ["Clinician", "Manual"],
       link: "https://www.pesi.com/item/written-exposure-therapy-wet-ptsd-evidencebased-treatment-reduced-dropouts-improved-outcomes-sessions-144320?_gl=1*1vlytcj*_up*MQ..&gclid=ac7589dfa54d1e591092e0cb1e96cf20&gclsrc=3p.ds",
       icon: <FileText className="h-6 w-6 text-primary" />,
+    },
+    {
+      title: "Publisher's Website (APA) - Written Exposure Therapy for PTSD, Second Edition",
+      description:
+        "Purchase the Second Edition directly from the American Psychological Association. APA members may receive a discount. Information on translated versions may also be found here.",
+      tags: ["Clinician", "Publisher", "Manual"],
+      link: "https://www.apa.org/pubs/books/written-exposure-therapy-ptsd-second-edition",
+      icon: <Globe className="h-6 w-6 text-primary" />,
     },
     {
       title: "Peer-Reviewed Publications on Written Exposure Therapy",
@@ -69,7 +77,9 @@ const Resources = () => {
   );
 
   // 2. Filter out the top resource to get the rest
-  const otherResources = resources.filter((r) => r.title !== topResource?.title);
+  const otherResources = resources.filter(
+    (r) => r.title !== topResource?.title
+  );
 
   // 3. Split the remaining resources into Video vs. Non-Video (Text/Link)
   const videoResources = otherResources.filter((r) => r.videoEmbed);
@@ -147,8 +157,14 @@ const Resources = () => {
             <h2 className="text-2xl font-bold mb-4">Need More Information?</h2>
             <p className="text-muted-foreground mb-6">
               For questions about training, implementation, or research
-              inquiries, please visit our contact page or explore the National
-              Center for PTSD resources.
+              inquiries, please contact us.
+              <br />
+              <br />
+              <span className="font-semibold text-foreground">
+                Looking for a Provider?
+              </span>{" "}
+              If you are a client looking for a WET therapist, please submit an
+              inquiry directly.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
@@ -156,14 +172,6 @@ const Resources = () => {
                 className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors font-medium"
               >
                 Contact Us
-              </a>
-              <a
-                href="https://www.ptsd.va.gov/professional/index.asp"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3 border border-primary text-primary rounded-md hover:bg-primary/5 transition-colors font-medium"
-              >
-                Visit PTSD.VA.gov
               </a>
             </div>
           </div>
