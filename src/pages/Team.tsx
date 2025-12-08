@@ -13,22 +13,14 @@ const Team = () => {
   const authors = [
     {
       name: "Denise M. Sloan, Ph.D.",
-      credentials: "Associate Director for Research, National Center for PTSD",
-      bio: `Denise M. Sloan, Ph.D., is Associate Director for Research in the National Center for PTSD, Behavioral Science Division at VA Boston Healthcare System and a Professor in the Department of Psychiatry at Boston University School of Medicine. Dr. Sloan received her B.A. in psychology from Rutgers University and her M.A. and Ph.D. in clinical psychology from the State University of New York at Binghamton. She completed her clinical internship at Brown University and a post-doctoral fellowship at Harvard Medical School and Massachusetts General Hospital.
-
-Dr. Sloan's research has been continuously funded by the Department of Veterans Affairs (DVA) and the National Institute of Mental Health for the past 20 years. She has over 160 peer-reviewed publications. Dr. Sloan is a member of the American Psychological Association where she is a fellow in Divisions 12 (Clinical), 38 (Health), and 56 (Trauma Psychology). She has served on several editorial boards of scientific journals and is currently a guest editor for the Journal of Traumatic Stress and an Associate Editor for the journal Emotion.
-
-Her work has been recognized with numerous awards including the 2018 Robert S. Laufer Memorial Award for Outstanding Scientific Achievement and the 2017 award for Outstanding Contributions to Science in the Field of Traumatic Stress from the International Society for Traumatic Stress Studies.`,
+      credentials: "Senior Psychologist Clinician Investigator, Behavioral Science Division, National Center for PTSD at VA Boston Healthcare System & Professor of Psychiatry, Boston University Chobanian & Avedisian School of Medicine",
+      bio: `Dr. Sloan is a clinical psychologist who is an expert on psychosocial interventions for traumatic stress disorders. She co-developed Written Exposure Therapy and has conducted a systematic line of work investigating the effectiveness of the treatment, in addition to the implementation of the treatment in various settings. This work has been funded by several organizations, including the Department of Veterans Affairs, the National Institute for Mental Health, and the Department of Defense. Dr. Sloan regularly trains therapists in the delivery of WET. She has published over 170 scientific articles and written and co-edited several books, including the Handbook of Traumatic Stress Disorders. She is the past Editor of Behavior Therapy and current Editor of Journal of Traumatic Stress. She has received several professional awards, including Outstanding Scientific Achievements from the International Society for Traumatic Stress Studies, Outstanding Contributions to Clinical Psychology from the Society for Clinical Psychology (Division 12 of the American Psychological Association), and outstanding mentor awards from both the International Society for Traumatic Stress Studies and Division 12 of the American Psychological Association.`,
       imageUrl: "/assets/Denise.JPG",
     },
     {
       name: "Brian P. Marx, Ph.D.",
-      credentials: "Deputy Director, National Center for PTSD",
-      bio: `Brian P. Marx, Ph.D., is the Deputy Director of the National Center for PTSD and Associate Director for Research in the National Center for PTSD, Behavioral Science Division at VA Boston Healthcare System. He is a Professor in the Department of Psychiatry at Boston University School of Medicine. Dr. Marx received his B.A. in psychology from the University of Minnesota and his M.A. and Ph.D. in clinical psychology from the University at Buffalo, SUNY. He completed his clinical internship at the VA Palo Alto Healthcare System and a post-doctoral fellowship at Harvard Medical School and Massachusetts General Hospital.
-
-Dr. Marx's research has been continuously funded by the Department of Defense (DoD) and the Department of Veterans Affairs (DVA) for the past 20 years. He has over 150 peer-reviewed publications. Dr. Marx is a member of the American Psychological Association where he is a fellow in Division 56 (Trauma Psychology). He has served on several editorial boards of scientific journals and is currently the Editor-in-Chief of the Journal of Traumatic Stress.
-
-His work has been recognized with numerous awards including the 2018 Robert S. Laufer Memorial Award for Outstanding Scientific Achievement from the International Society for Traumatic Stress Studies, 2011 Early Career Award for Outstanding Contributions to Research from DVA's Health Services Research & Development (HSR&D) Service, and the 2004 Outstanding Dissertation Award from the International Society for Traumatic Stress Studies.`,
+      credentials: "Deputy Director and Senior Psychologist Clinician Investigator, Behavioral Science Division, National Center for PTSD at VA Boston Healthcare System & Professor of Psychiatry, Boston University Chobanian & Avedisian School of Medicine",
+      bio: `Dr. Marx is a clinical psychologist who has expertise in psychosocial treatments for PTSD and assessment of PTSD. Along with Dr. Sloan, he has co-developed written exposure therapy and conducted a line of work investigating the treatment. He is a co-author of all the most used measures of PTSD diagnostic status and symptom severity and regularly conducts research on the best methods to assess PTSD and symptom change. He has held funding simultaneously from both federal and non-federal agencies and has published over 300 peer-reviewed scientific articles. Dr. Marx is the recipient of the Robert L. Laufer Memorial Award for Outstanding Scientific Achievement from the International Society for Traumatic Stress Studies and an Award for Outstanding Scientific Contributions from Division 56 (Trauma Psychology) of the American Psychological Association.`,
       imageUrl: "/assets/Marx.JPG",
     },
   ];
@@ -66,7 +58,7 @@ His work has been recognized with numerous awards including the 2018 Robert S. L
                     <div className="flex-1 space-y-4">
                       <div>
                         <h3 className="text-2xl font-bold">{author.name}</h3>
-                        <p className="text-primary font-medium text-lg">
+                        <p className="text-primary font-medium text-lg leading-snug">
                           {author.credentials}
                         </p>
                       </div>
