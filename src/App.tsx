@@ -31,7 +31,7 @@ const queryClient = new QueryClient();
 // 🛑 MAINTENANCE MODE SWITCH
 // Change this to 'true' to hide the site.
 // Change to 'false' to show the site.
-const IS_MAINTENANCE_MODE = true;
+const IS_MAINTENANCE_MODE = false;
 // ==========================================
 
 // Simple Maintenance Page Component
