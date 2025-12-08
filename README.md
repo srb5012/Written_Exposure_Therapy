@@ -1,6 +1,6 @@
 # Written Exposure Therapy Website
 
-**Live URL**: [https://writtenexposure.com](https://writtenexposure.com])
+**Live URL**: [https://writtenexposure.com](https://writtenexposure.com)
 
 ## Project Overview
 
@@ -12,7 +12,8 @@ To keep hosting completely free while supporting backend logic:
 
 1.  **Frontend & Backend:** Hosted on **Vercel** (Free Tier).
 2.  **Domain:** Registered on **GoDaddy**, pointing to Vercel via Nameservers.
-3.  **Backend Logic:** Uses Vercel Serverless Functions (`/api` directory) instead of a traditional running `server.js` process.
+3.  **Database:** Uses **MongoDB Atlas** (Free Tier) to store newsletter subscribers.
+4.  **Backend Logic:** Uses Vercel Serverless Functions (`/api` directory) to communicate between the frontend and the database.
 
 ## Technologies
 
@@ -27,6 +28,8 @@ To keep hosting completely free while supporting backend logic:
 **Backend:**
 
 - Vercel Serverless Functions (Node.js)
+- MongoDB Atlas (Cloud Database)
+- Mongoose (ODM for MongoDB)
 - Nodemailer (Email transport)
 
 ---
@@ -44,7 +47,7 @@ npm install
 
 ### 2. Configure Environment Variables
 
-Create a `.env` file in the root directory. These variables are required for the contact form to work locally.
+Create a `.env` file in the root directory. You need these variables for the database and emails to work.
 
 ```env
 # .env
@@ -53,8 +56,15 @@ Create a `.env` file in the root directory. These variables are required for the
 EMAIL_USER="your-email@gmail.com"
 EMAIL_PASS="your-16-digit-app-password"
 
-# Where form submissions should be sent
+# Where contact form submissions should be sent
 RECIPIENT_EMAIL="doctor-email@example.com"
+
+# MongoDB Connection String (Get this from MongoDB Atlas Dashboard)
+# Ensure the password in the string does not have special characters like @ or : unless URL encoded.
+MONGODB_URI="mongodb+srv://admin:YOUR_PASSWORD@cluster0.xyz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+# Secret password to access the Admin CSV download page
+ADMIN_SECRET="MySecretPassword123"
 ```
 
 ### 3. Run the Application
@@ -67,7 +77,7 @@ npm run dev
 ```
 
 **Option B: Full Stack Development (Frontend + API)**
-To test API endpoints locally (like the contact form), usage depends on if you are testing the legacy `server.js` or Vercel functions.
+To test API endpoints locally (like the contact form or database), usage depends on if you are testing the legacy `server.js` or Vercel functions.
 
 - **Legacy:** Open a second terminal and run `node server.js`.
 - **Vercel:** Install Vercel CLI (`npm i -g vercel`) and run `vercel dev`.
@@ -93,7 +103,7 @@ The site uses **Continuous Deployment**. Any change pushed to the `main` branch 
 
 The domain is connected via Nameservers. If you ever need to reconnect it:
 
-1.  **In Vercel:** Go to Settings > Domains > Add `writtenexposuretherapy.org`.
+1.  **In Vercel:** Go to Settings > Domains > Add `writtenexposure.com`.
 2.  **In GoDaddy:**
     - Go to DNS Management.
     - Change **Nameservers** to Custom.
@@ -110,7 +120,39 @@ The `.env` file is not uploaded to GitHub. You must set these variables in Verce
     - `EMAIL_USER`
     - `EMAIL_PASS`
     - `RECIPIENT_EMAIL`
+    - `MONGODB_URI`
+    - `ADMIN_SECRET`
 3.  **Redeploy** for changes to take effect.
+
+---
+
+## 👮 Admin & Newsletter Management
+
+### Admin Page
+
+A hidden admin page is available to download the list of newsletter subscribers as a CSV file (readable in Excel).
+
+- **URL:** [https://writtenexposure.com/admin](https://writtenexposure.com/admin)
+- **Access:** Requires the `ADMIN_SECRET` password set in your environment variables.
+- **Functionality:** Clicking the download button triggers `/api/export-subscribers`, which authenticates the user and generates the file.
+
+### Newsletter API
+
+The newsletter logic is handled in `/api/newsletter.js`.
+
+- **POST:** Adds a new email to MongoDB. Checks for duplicates automatically.
+- **DELETE:** Removes an email from MongoDB.
+
+---
+
+## ⚙️ Configuration Files
+
+### `vercel.json`
+
+This file exists in the root directory to handle **SPA Routing**.
+
+- **Purpose:** If a user visits a sub-page like `/admin` directly, Vercel normally throws a 404 error because `admin.html` doesn't exist.
+- **Fix:** This file tells Vercel to redirect all non-API requests to `index.html`, allowing React Router to render the correct page.
 
 ---
 
@@ -127,33 +169,20 @@ The application has a built-in "Under Construction" screen to hide the site cont
     ```
 3.  Commit and push the change.
 
-**To Disable Maintenance Mode:**
-
-1.  Set the variable to `false`.
-2.  Commit and push.
-
 ---
 
-## ⚠️ Backend Important Notes
+## ⚠️ Important Troubleshooting
 
-### Serverless Limitations (The "Database" Issue)
+### CORS Errors
 
-Because Vercel is "serverless," the backend code wakes up for a second to handle a request and then shuts down. **It cannot save files to the disk.**
+If you change the domain name or add a new environment, you might get "Network Error" when submitting forms.
 
-- **Problem:** Writing to `subscribers.json` (as done in the original local version) **will not work** in production. The file will be reset every time the server sleeps.
-- **Solution:** You must use an external database or service for the newsletter.
-  - _Option A (Recommended):_ Connect the form to **Mailchimp** or **ConvertKit**.
-  - _Option B (Advanced):_ Connect the API to **MongoDB Atlas** (Free Tier).
+- **Fix:** Open `api/newsletter.js` and `api/contact.js`. Update the `allowedOrigins` array to include your new domain.
 
-### API Routes
+### Database Connection Errors
 
-The production site uses the `/api` directory for backend logic, mapped automatically by Vercel.
+If forms fail with "Bad Auth" or connection errors:
 
-- `api/contact.js` -> Endpoint: `/api/contact`
-- `api/newsletter.js` -> Endpoint: `/api/newsletter`
-
----
-
-## Repository Annotations
-
-During documentation passes, non-functional header comments were added to source files to indicate purpose and influence. A macOS `.DS_Store` file was detected inside `public/assets` and can be safely deleted.
+1.  Check that `MONGODB_URI` in Vercel settings matches your MongoDB Atlas string exactly.
+2.  Ensure your IP address is allowed in MongoDB Atlas -> Network Access (Use `0.0.0.0/0` to allow Vercel).
+3.  Ensure your database password does not contain special characters that break the URL format.
