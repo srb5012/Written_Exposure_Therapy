@@ -24,6 +24,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Sources from "./pages/sources";
 import Admin from "./pages/Admin"; // <--- NEW IMPORT
+import WETTraining from "./pages/WETTraining";
 
 // Initialize React Query client
 const queryClient = new QueryClient();
@@ -75,6 +76,7 @@ const App = () => {
               <Route path="/resources" element={<Resources />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/sources" element={<Sources />} />
+              <Route path="/training" element={<WETTraining />} />
               
               {/* ADMIN ROUTE */}
               <Route path="/admin" element={<Admin />} />

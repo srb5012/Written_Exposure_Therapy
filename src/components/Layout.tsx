@@ -31,13 +31,14 @@ const Layout = ({ children }: LayoutProps) => {
 
   // Main navigation configuration
   // Add new navigation items here to update both desktop and mobile menus
-  const navItems = [
-    { label: "Home", path: "/" },           // Landing page
-    { label: "About", path: "/about" },     // About WET therapy
-    { label: "Authors", path: "/team" },    // Treatment developers
-    { label: "Resources", path: "/resources" }, // Training and materials
-    { label: "Contact", path: "/contact" }, // Contact information
-  ];
+const navItems = [
+  { label: "Home", path: "/" },
+  { label: "About", path: "/about" },
+  { label: "Authors", path: "/team" },
+  { label: "Resources", path: "/resources" },
+  { label: "Training", path: "/training" },  // ← add this
+  { label: "Contact", path: "/contact" },
+];
 
   const isActive = (path: string) => location.pathname === path;
 
